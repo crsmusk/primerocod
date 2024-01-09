@@ -1,0 +1,71 @@
+#include <iostream>
+
+using namespace std;
+string fng;
+int dificultad;
+void partida(int lol){
+    srand(static_cast <unsigned int>(time(nullptr)));
+    dificultad=lol+1;
+    int numeroA=rand()% dificultad +1;
+    int usuario;
+    int contador=1;
+    fng="felicidades adivino";
+     cout<<"tienes cinco intentos"<<"\n";
+    while(!false){
+        //cout<<"el numero es "<<numeroA<<"\n";
+        if(contador==6){
+            cout<<"sin intentos"<<"\n";
+            fng="empty";
+            break;
+        }
+        cout<<"digite un numero:";
+        cin>>usuario;
+        if(usuario==numeroA){
+            cout<<fng<<"\n";
+            cout<<"la cantidad de intentos fue:"<<contador<<"\n";
+            break;
+        }else if(usuario>numeroA){
+            cout<<"el numero es menor"<<"\n";
+        }else{
+            cout<<"el numero es mayor"<<"\n";
+        }
+        
+        contador++;
+    }
+};
+
+int main()
+{
+    string pregunta;
+    string cerrar;
+    cout<<"quieres empezar partida di si o no :";
+    cin>>pregunta;
+    if(pregunta=="si"){
+        cout<<"la partida esta empezando:"<<"\n";
+        partida(0);
+    }else if(pregunta=="no"){
+        cout<<"cerrando el menu";
+    }else{
+        cerrar="respuesta invalida";
+        cout<<cerrar<<"\n";
+    }
+    int mas=0;
+    
+    int limite=50;
+    while(!false){
+        if(fng=="felicidades adivino"){
+            cout<<"la dificultad aumentara en 20 numeros mas:"<<"\n";
+            dificultad=dificultad+20;
+            limite=dificultad;
+            cout<<"las opciones son "<<limite<<"\n";
+            partida(dificultad);
+            
+            
+        }else if(cerrar=="respuesta invalida"||pregunta=="no"){
+            //cuando se ejecute la variable cerrar  no salga game over en pantalla
+            break;
+        }else{
+            cout<<"game over";
+        }
+    }
+}
